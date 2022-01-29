@@ -69,7 +69,7 @@ function addPhraseToDisplay(arr) {
 
 addPhraseToDisplay(randomphrase);
 
-console.log(addPhraseToDisplay(randomphrase));
+
 
 
 
@@ -85,10 +85,10 @@ function checkLetter(check) {
           checkLetter = check[i];
 
           if (checkLetter[i] === "check"){
-              var score = match + 1;
               checkLetter.classList.add("show");
-          } else {
-              checkLetter.classList.add("")
+              match = check.value;
+          
           }
     }
+    return match;
 }
