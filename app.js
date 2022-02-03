@@ -2,12 +2,13 @@ const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const btnReset = document.querySelector('.btn__reset');
 const phraselist = document.getElementById('phrase');
+const scoreboard = document.getElementById("scoreboard");
 
 
 //Use to keep track of the number of guesses
 let missed = 0;
 
-
+//Declare and initalize the phrases array storing at least five strings that contain only letters and spaces, no puncuation
 const phrases = [
     "Demon Slayer",
     "Code Love",
@@ -70,25 +71,62 @@ function addPhraseToDisplay(arr) {
 addPhraseToDisplay(randomphrase);
 
 
-
-
-
  
 
 function checkLetter(check) {
     const checkLetter = querySelectorAll('li');
     var match = null;
 
-    for( let i = 0; i < check.length; i++){
+    for( let i = 0; i < check.length; i++ ){
     ///Loop through all of the li elements. Remember: arrays start with the index of 0.
 
-          checkLetter = check[i];
-
-          if (checkLetter[i] === "check"){
+//Create a conditional that compares the text of the button parameter to the text
+//of the li at the current index
+          if (checkLetter[i] === check){
               checkLetter.classList.add("show");
               match = check.value;
           
           }
     }
     return match;
+}
+
+qwerty.addEventListener("click", (e) => {
+let button = e.target;
+
+//Use a conditional to filter out clicks that don't happen on the buttons or if the button already has the "chosen" class 
+ if (button.tagName !== "BUTTON" || button.className ==="chosen") {
+     return;
+ }
+
+ //Add the "chosen" class to the button that was pressed.
+  button.classList.add("chosen");
+
+  //Call the checkletter function and store the results in the variable.
+  let result = checkLetter(e.target);
+
+  //If the checkLetter function does not find a letter, remove one of the heart images and increment the missed counter
+ if(result === 'checkletter' & scoreboard.length > 0 ) {
+     ol.appendChild(li);
+     lostHeart.removeChild(lostHeart[0]);
+     missed++
+ }
+
+
+})
+
+// check if the user has won
+function CheckWin() {
+const letter = document.getElementsByClassName("letter");
+const show = document.getElementsByClassName("show");
+
+document.getElementById("overlay").classList.add("win");
+document.getElementsByClassName("title").innerHTML= "WInner";
+document.getElementById("overlay").style.display = "flex";
+if(missed <= 4 ) {
+    document.getElementById("overlay").classList.add('lose');
+    document.getElementsByClassName("title").innerHTML = "Loser";
+    document.getElementById("overlay").style.display = "flex";
+}
+
 }
