@@ -1,4 +1,4 @@
-const qwerty = document.getElementById("qwerty");
+ const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const btnReset = document.querySelector('.btn__reset');
 const phraselist = document.getElementById('phrase');
@@ -102,6 +102,7 @@ let button = e.target;
 
  //Add the "chosen" class to the button that was pressed.
   button.classList.add("chosen");
+  button.disabled = true;
 
   //Call the checkletter function and store the results in the variable.
   let result = checkLetter(button);
